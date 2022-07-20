@@ -1,0 +1,56 @@
+.container{
+    background-image: url(https://cutewallpaper.org/21/black-and-white-dog-images/Pet-Photography-Melbourne.jpg);  
+    height:100%; 
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position:center;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    right: 0;
+    background-color: rgb(224, 224, 224);
+    filter: sepia(10%);
+}
+
+.link{
+    text-decoration: none;
+}
+
+.title{
+    margin-top: 100px;
+    margin-right: 700px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 100px;
+    font-family: 'MV Boli';
+}
+
+.card{
+    margin-left: 180px;
+    width: 350px;
+    height: 200px;
+    overflow: hidden;   
+    border-radius: 100%;
+    background-image: url("https://ouch-cdn2.icons8.com/RmXzz8DclAmXWUZfn-wZmHklh5U3tfMt3YnqVPoKUVc/rs:fit:256:118/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMTkx/L2FhNWFiY2VhLWY2/YzMtNGU5Mi04NDlk/LTYzNGYwMTFiYzRh/My5zdmc.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: scale(1.2); 
+}
+
+.card:hover{
+    transform: scale(1.4); 
+    transition: transform .4s;
+}
+
+.img{
+    width: 100%;
+    height: auto;
+    margin-top: 87px; 
+}
+
+.name{
+    color: rgb(17, 16, 16);
+    font-family: 'Comic Sans MS';
+    font-weight: bolder;
+    font-size: large;
+}
