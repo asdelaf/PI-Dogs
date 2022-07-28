@@ -1,6 +1,7 @@
 import {
   GET_DOGS,
   GET_DOG_ID,
+  GET_CLEAN
 } from "../actions/dogs.js";
 
 import {
@@ -8,7 +9,7 @@ import {
 } from "../actions/temperaments.js";
 
   const initialState = {
-    dogs: [],
+    allDogs: [],
     temperaments: [],
     dog: {}
   };
@@ -18,7 +19,7 @@ import {
       case GET_DOGS:
         return {
           ...state,
-          dogs: action.payload,
+          allDogs: action.payload,
         };
       case GET_DOG_ID:
         return {
@@ -30,9 +31,15 @@ import {
           ...state,
           temperaments: action.payload,
         };
+      case GET_CLEAN:
+        return {
+          ...state,
+          dog: action.payload
+        };
+      
       
 
       default:
-        return state;
+        return {...state};
     }
   }

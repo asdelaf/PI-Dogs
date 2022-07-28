@@ -24,12 +24,12 @@
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    background-color: rgb(151, 143, 143);
+    background-color: rgb(83, 78, 78);
     /*background: rgb(117, 114, 114);*/
     text-decoration: none;
     border-radius: 30px;
     width: 800px;
-    height: 1000px;
+    height: 1100px;
 }
 
 

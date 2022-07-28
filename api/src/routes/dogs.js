@@ -8,35 +8,45 @@ router.get("/", async(req, res, next) => {
     const {name} = req.query;
     try{
         if(name){
-            const dogsBase = await Dog.findAll({where: {name: name}}, {include: [{model: Temperament}]})
-            const data = await axios.get(URL_API);
-            const dataApi = data.data;
-            const dogsApi = dataApi.filter((c) => {
-                return c.name.toUpperCase() === name.toUpperCase()
-            })
-            const dogApi = dogsApi.map((c) => {
-                let temp =[];
-                let aux = [];
-                if(c.temperament){
-                    aux = c.temperament.split(', ');
-                    aux.map((a) => {
-                        let t = {name: a}
-                        temp.push(t);                        
-                    })                          
-                }
-                return {
-                    id: 'a'+ c.id.toString(),
-                    weight: c.weight.metric,
-                    height: c.height.metric,
-                    name: c.name.toUpperCase(),
-                    image: c.image.url,
-                    years: c.life_span,
-                    temperaments: temp 
-                                   
-                } 
-            })
+            let nam = name.toUpperCase();
+            const dogsBase = await Dog.findAll({where: {name: nam}, include: [{model: Temperament}]})
+            if(dogsBase.length>0){
+                res.json(dogsBase)
+            }else{
+                const data = await axios.get(URL_API);
+                const dataApi = data.data;
+                const dogsApi = dataApi.filter((c) => {
+                    return c.name.toUpperCase() === nam
+                })
+    
+                const dogApi = dogsApi.map((c) => {
+                    let temp =[];
+                    let aux = [];
+                    if(c.temperament){
+                        aux = c.temperament.split(', ');
+                        aux.map((a) => {
+                            let t = {name: a}
+                            temp.push(t);                        
+                        })                          
+                    }
+                    return {
+                        id: 'a'+ c.id.toString(),
+                        weight: c.weight.metric,
+                        height: c.height.metric,
+                        name: c.name.toUpperCase(),
+                        image: c.image.url,
+                        years: c.life_span,
+                        temperaments: temp 
+                                       
+                    } 
+                })
+
+                res.json(dogApi);
+
+            }        
             
-            res.json(dogApi.concat(dogsBase));
+            
+
         }else{
 
             const dogs = await Dog.findAll({include: [{model: Temperament}]})

@@ -16,25 +16,29 @@ const DogsCards = ({dogs, loading}) => {
 
     return (
         <div className={s.grid}>
-            {dogs.map((c) => {
+            {dogs && dogs.length > 0 ? (dogs.map((c) => {
                     return (
-                        <NavLink className={s.link} to={`/dogs/${c.id}`}>
+                        
                             <div className={s.card}>
+                                <NavLink className={s.link} to={`/dogs/${c.id}`}>
+                                <div>
                                 <div className={s.box} style={imgStyle(c.image)}></div>
                                 <a className={s.name} >{c.name} </a>
                                 <div className={s.gridH}>
-                                    {c.temperaments.map((t) => {
+                                    {c.temperaments && c.temperaments.length ? (c.temperaments.map((t) => {
                                         return(
                                             <div className={s.hashtag}>
                                                 <p className={s.temperament}>{t.name}</p>
                                             </div>
                                         )
-                                    })}
-                                </div>                         
+                                    })):<h2></h2>}
+                                </div>
+                                </div>
+                                </NavLink>                          
                             </div>
-                        </NavLink> 
+                        
                     )
-            })}
+            })): <h2></h2>}
         </div>
 
         

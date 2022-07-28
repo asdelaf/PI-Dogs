@@ -2,6 +2,7 @@ import axios from "axios";
 export const GET_DOGS = "GET_DOGS";
 export const GET_DOG_ID = "GET_DOG_ID";
 export const POST_DOG = "POST_DOG";
+export const GET_CLEAN = "GET_CLEAN"
 
 
 export function postDog(dog) {
@@ -41,4 +42,11 @@ export function getDogId(id) {
         });
       });
   };
+}
+
+export function getClean () {
+  return{
+      type: GET_CLEAN,
+      payload: []
+  }
 }

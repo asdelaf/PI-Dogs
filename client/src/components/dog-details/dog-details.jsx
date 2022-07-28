@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getDogId } from '../../redux/actions/dogs';
+import { getClean, getDogId } from '../../redux/actions/dogs';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import s from './dog-details.module.css';
@@ -15,8 +15,10 @@ const DogsDetails = () => {
     {dog.height && dog.height.length>0 ? (h = dog.height.split(' - '), ()=>{return(<a></a>)} ) : <a>.</a>}*/
 
     useEffect(() => {
+        dispatch(getClean());
         dispatch(getDogId(id));
-    }, []);
+
+    }, [dispatch, id]);
 
     function imgStyle(img)  {
         return {

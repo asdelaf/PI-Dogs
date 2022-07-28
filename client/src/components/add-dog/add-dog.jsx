@@ -33,6 +33,15 @@ const AddDog= () => {
             });
         }
         getTemperaments();
+
+        const get = async () => {
+            HelpGet(`/dogs`).then((res) => {
+                setLoading(true);
+                setDogs(res.data);
+                setLoading(false);
+            });
+        }
+        get();
     }, []);
 
 
@@ -48,20 +57,14 @@ const AddDog= () => {
       
     function handleSubmit(e) {
         e.preventDefault();
-        if(breed.name=="" || breed.image==''|| breed.minHeight=="" || breed.maxHeight=="" || breed.maxWeight=="" || breed.minWeight=="" || breed.years==''|| selectedTemperaments.length==0){
+        if(breed.name ==="" || breed.image ===''|| breed.minHeight ==="" || breed.maxHeight ==="" || breed.maxWeight ==="" 
+        || breed.minWeight ==="" || breed.years ===''|| selectedTemperaments.length ===0){
             window.alert('COMPLETE TODOS LOS CAMPOS');
         }else{
 
-            const get = async () => {
-                HelpGet(`/dogs/?name=${breed.name}`).then((res) => {
-                    setLoading(true);
-                    setDogs(res.data);
-                    setLoading(false);
-                });
-            }
-            get();
+
             
-            if(dogs){
+            if(dogs.find((d) => d.name === breed.name.toUpperCase())){
                 window.alert("Ya existe una raza con ese nombre");
 
             }else{
@@ -98,10 +101,9 @@ const AddDog= () => {
                             years:'',
                             temperaments:[]
                         };
-                        
-                        let dog = [];
 
-                        setBreed(bred)
+                        setSelectedTemperaments(bred.temperaments);
+                        setBreed(bred);
                     }
                 }
 
@@ -129,49 +131,70 @@ const AddDog= () => {
         <div>
             <Nav/>
             <form className={s.form} onSubmit={handleSubmit}>
-                <fieldset className={s.fieldset}>
-                    <legend className={s.legend}>Create Breed</legend>
+                <h1 className={s.title}>Create Breed</h1>
+                <fieldset>
+                        <div className={s.containerText}>
+                            <label className={s.labelTitle}>Name of breed:</label>
+                            <input className={s.input} type='text' name="name" maxlength="30" value={breed.name} onChange={(e) => handleChange(e)}/>
+                        </div>
 
-                        <label>Name of breed:</label>
-                        <input type='text' name="name" maxlength="30" value={breed.name} onChange={(e) => handleChange(e)}/>
-                            <br/>
-                            <br/>
-                        <label>Image (URL):</label>
-                        <input type='text' name="image"value={breed.image} maxlength="250" onChange={(e) => handleChange(e)}/>
-                            <br/>
-                            <br/>   
-                        <label>Min Weight:</label>
-                        <input type='number' name="minWeight"value={breed.minWeight} onChange={(e) => handleChange(e)}/>
 
-                        <label>Max Weight:</label>
-                        <input type='number' name="maxWeight"value={breed.maxWeight} onChange={(e) => handleChange(e)}/>
+                        <div className={s.containerText}>
+                            <label className={s.labelTitle}>Image (URL):</label>
+                            <input className={s.input} type='text' name="image" value={breed.image} maxlength="250" onChange={(e) => handleChange(e)}/>
+                        </div>
+
+
+                        <div className={s.containerMin}>   
+                            <label className={s.labelTitle}>Min Weight:</label>
+                            <input className={s.input} type='number' name="minWeight" value={breed.minWeight} onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div className={s.containerMax}> 
+                            <label className={s.labelTitle}>Max Weight:</label>
+                            <input className={s.input} type='number' name="maxWeight" value={breed.maxWeight} onChange={(e) => handleChange(e)}/>
+                        </div>
+
+
+                        <div className={s.containerMin}> 
+                            <label className={s.labelTitle}>Min Height:</label>
+                            <input className={s.input} type="number" name="minHeight"  value={breed.minHeight} onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div className={s.containerMax}> 
+                            <label className={s.labelTitle}>Max Height:</label>
+                            <input className={s.input} type="number" name="maxHeight"  value={breed.maxHeight} onChange={(e) => handleChange(e)}/>
+                        </div>
+
+
+                        <div className={s.containerYears}> 
+                            <label className={s.labelTitle}>Years of life:</label>
+                            <input className={s.input} type="number" name="years" value={breed.years} onChange={(e) => handleChange(e)}/>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                        <div className={s.containerTemperaments}> 
+                            <label className={s.labelTitle}>Temperaments:</label>
                             <br/>
-                            <br/>
-                        <label>Min Height:</label>
-                        <input type="number" name="minHeight"  value={breed.minHeight} onChange={(e) => handleChange(e)}/>
-                        <label>Max Height:</label>
-                        <input type="number" name="maxHeight"  value={breed.maxHeight} onChange={(e) => handleChange(e)}/>
-                            <br/>
-                            <br/>
-                        <label>Years of life:</label>
-                        <input type="number" name="years" value={breed.years} onChange={(e) => handleChange(e)}/>
-                            <br/>
-                            <br/>
-                        <label>Temperaments</label>
-                        <select name="temperaments" id="temperaments"  onChange={(e) => handleChange(e)}>
-                            {temperaments.map((c) => {
-                               return( <option>{c.name}</option>)
-                            })}
-                        </select>
-                        <input type='button' value='+' onClick={addTemperament}/>
-                            <br/>
-                            <br/>
-                        <div id='temperaments-selected'>
+                            <div className={s.divSelect}>
+                                <div className={s.containerSelect}> 
+                                    <select name="temperaments" id="temperaments"  onChange={(e) => handleChange(e)}>
+                                        {temperaments.map((c) => {
+                                        return( <option>{c.name}</option>)
+                                        })}
+                                    </select>
+                                </div>
+                                <input className={s.addTemperament} type='button' value='+' onClick={addTemperament}/>
+                            </div>     
+                        </div>
+
+                        <div classname={s.grid} id='temperaments-selected'>
                             {selectedTemperaments.map((c) => {
                             return (
-                                <div key={c}>
-                                    <p>{c}</p>
+                                <div className={s.hashtag} key={c}>
+                                    <p className={s.temperament}>{c}</p>
                                     <input
+                                        className={s.buttonDelete}
                                         type="button"
                                         value="X"
                                         onClick={()=>deleteTemperament(c)}
@@ -181,7 +204,7 @@ const AddDog= () => {
                             })}
                          </div>
                          
-                         <button type="submit">ADD BREED</button>                       
+                         <button className={s.buttonSubmit}type="submit">ADD BREED</button>                       
 
                 </fieldset>
             </form>
