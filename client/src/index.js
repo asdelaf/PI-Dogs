@@ -7,8 +7,10 @@ import {Provider} from 'react-redux';
 import store from './redux/store/index';
 import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
+import dotoenv from "dotoenv";
+dotoenv.config();
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
 ReactDOM.render(
   <React.StrictMode>
