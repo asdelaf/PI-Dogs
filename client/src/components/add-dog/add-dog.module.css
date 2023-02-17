@@ -193,9 +193,14 @@ Select {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-gap: 15px;
-    float: center;
+   /* float: center;
     margin-top: 50px;
     margin-left: 25px;    
+    */float: center;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+
 }
 
 @media only screen and (min-width: 500px) {
@@ -212,13 +217,12 @@ Select {
 
 
 .hashtag{
-    display: flex;
     align-items: center;
     justify-content: space-between; 
     background-color:rgb(102, 100, 100);/*rgb(99, 98, 98)*/;
-    width: 100px;
-    height: 50px;
-    border-radius: 10px;
+    width: 150px;
+    height: 70px;
+    border-radius: 15px;
     
 }
 
@@ -227,11 +231,20 @@ Select {
     text-decoration: none;
     font-size: medium;
     font-family: 'Comic Sans MS';
-    margin-right: 2px;
-    margin-left: 2px;
-    margin-top: 1px;
+    float: center;
 }
 
 .buttonDelete{
-    text-align: right;
+    display: block;
+    float: right;
+    color: #fff;
+    border-radius: 15px;
+    border-color: transparent;
+    cursor: pointer;
+    background-color: #b16a6a;
+}
+
+.buttonDelete:hover {
+    transform: scale(1.1);
+    transition: .4s;  
 }

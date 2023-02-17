@@ -188,17 +188,17 @@ const AddDog= () => {
                             </div>     
                         </div>
 
-                        <div classname={s.grid} id='temperaments-selected'>
+                        <div className={s.grid} id='temperaments-selected'>
                             {selectedTemperaments.map((c) => {
                             return (
                                 <div className={s.hashtag} key={c}>
-                                    <p className={s.temperament}>{c}</p>
                                     <input
                                         className={s.buttonDelete}
                                         type="button"
                                         value="X"
                                         onClick={()=>deleteTemperament(c)}
                                     />
+                                    <p className={s.temperament}>{c}</p>
                                 </div>
                             );
                             })}
