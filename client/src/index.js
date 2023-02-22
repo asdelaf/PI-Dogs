@@ -9,7 +9,7 @@ import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 
 
-axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = "https://pi-dogs-production-38b4.up.railway.app/";
 
 ReactDOM.render(
   <React.StrictMode>
