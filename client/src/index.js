@@ -5,11 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import store from './redux/store/index';
-import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
 
 
-axios.defaults.baseURL = "https://pi-dogs-production-38b4.up.railway.app/";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -4,7 +4,9 @@ import Home from './components/home/home';
 import LandingPage from './components/landing-page/landing-page';
 import DogDetails from './components/dog-details/dog-details'
 import AddDog from './components/add-dog/add-dog';
+import axios from 'axios';
 
+axios.defaults.baseURL = "https://pi-dogs-production-38b4.up.railway.app/";
 function App() {
   return (
     <div className="App">
